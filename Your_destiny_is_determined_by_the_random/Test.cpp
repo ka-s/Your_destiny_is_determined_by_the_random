@@ -3,9 +3,13 @@
 // ================================================================
 #include <Siv3D.hpp>
 #include <random>
+#include <bitset>
 
 using namespace std;
 
+// --------------------------------
+//  Main function
+// --------------------------------
 void Main(){
 
     // ---------------- Window status ----------------
@@ -24,15 +28,35 @@ void Main(){
     // Mersenne twister
     mt19937 mt(rd());
     // Make a dice
-    uniform_int_distribution<int> dice(0, 6);
+    uniform_int_distribution<int> dice(1, 6);
 
+    // ---------------- Values ----------------
     // Make the dice font
     Font f_dice(16);
+    // Throw the dice flag
+    bitset<1> flag_dice;
+    // Dice result
+    int dice_result;
 
     while (System::Update()){
 
-        // Draw the dice
-        f_dice(dice(mt)).draw();
+        // If pressed Z
+        if (Input::KeyZ.clicked){
+            // Dice throw flag turn on
+            flag_dice.at(0) = true;
+            // Get dice random
+            dice_result = dice(mt);
+        }
+
+        // If dice is throwed
+        if (flag_dice.at(0)){
+            // Draw the dice
+            f_dice(dice_result).draw();
+        }
+        else{
+            // Draw first message
+            f_dice(L"Please press Z key").draw();
+        }
 
     }
 }
