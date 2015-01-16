@@ -1,0 +1,8 @@
+*.sdf
+*.opensdf
+*.suo
+*.v12
+ipch/
+Debug/
+Release/
+__my_tool__/
