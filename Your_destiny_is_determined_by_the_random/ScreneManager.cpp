@@ -4,9 +4,12 @@ using namespace std;
 using namespace boost;
 
 namespace{
+    const int GOAL_POSITION = 64;
+
     dynamic_bitset<> flag_dice(1);
     int dice_result;
-    int now_position = 0;
+    int now_position;
+    int now_turn;
 
     random_device rd;
     random::mt19937 mt(rd());
@@ -17,6 +20,9 @@ ScreneManager::ScreneManager(){
     player = boost::shared_ptr<Player>(new Player());
 
     f_dice = Font(16);
+
+    now_position = 0;
+    now_turn = 0;
 }
 
 ScreneManager::~ScreneManager(){
@@ -26,7 +32,6 @@ ScreneManager::~ScreneManager(){
 void ScreneManager::update(){
 
     throw_dice();
-
     update_player_data();
 
 }
@@ -34,8 +39,11 @@ void ScreneManager::update(){
 void ScreneManager::draw(){
 
     if (flag_dice.test(0)){
-        f_dice(dice_result).draw();
-        f_dice(player->get_progress()).draw({ 0, 18 });
+        f_dice(
+            L"現在", now_turn, L"ターン目",
+            L"\nサイコロ：", dice_result, 
+            L"\n現在", player->get_progress(), L"マス目", 
+            L"\nゴールまであと", GOAL_POSITION - player->get_progress(), L"マス").draw();
     }
     else{
         f_dice(L"Please press Z key").draw();
@@ -50,6 +58,7 @@ void ScreneManager::throw_dice(){
         flag_dice.set(0);
         dice_result = dice(mt);
         now_position += dice_result;
+        now_turn += 1;
     }
 
 }
