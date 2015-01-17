@@ -91,6 +91,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="ScreneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +220,8 @@
     <Media Include="Example\風の丘.mp3" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Const.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="ScreneManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
