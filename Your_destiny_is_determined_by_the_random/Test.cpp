@@ -38,6 +38,8 @@ void Main(){
     dynamic_bitset<> flag_dice(1);
     // サイコロの結果
     int dice_result;
+    // 現在のマス
+    int now_position = 0;
 
     // ---------------- メインループ ----------------
     while (System::Update()){
@@ -48,12 +50,16 @@ void Main(){
             flag_dice.set(0);
             // サイコロの値を取得
             dice_result = dice(mt);
+            // コマを進める
+            now_position += dice_result;
         }
 
         // サイコロを投げるフラグがオンなら
         if (flag_dice.test(0)){
             // サイコロを描画
             f_dice(dice_result).draw();
+            // 現在のマスを描画
+            f_dice(now_position).draw({0, 18});
         }
         else{
             // 最初のメッセージを描画
