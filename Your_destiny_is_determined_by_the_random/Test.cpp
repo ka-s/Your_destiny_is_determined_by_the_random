@@ -4,6 +4,7 @@
 #include <Siv3D.hpp>
 #include <boost/random.hpp>
 #include <boost/dynamic_bitset.hpp>
+#include <boost/shared_ptr.hpp>
 
 using namespace std;
 using namespace boost;
@@ -88,7 +89,7 @@ void Main(){
 
     // ---------------- 変数 ----------------
     // 画面管理ポインタ
-    std::shared_ptr<ScreneManager> screne_manager = make_shared<ScreneManager>();
+    boost::shared_ptr<ScreneManager> screne_manager(new ScreneManager());
 
     // ---------------- メインループ ----------------
     while (System::Update()){
