@@ -2,10 +2,11 @@
 //  メインシーンのテスト
 // ================================================================
 #include <Siv3D.hpp>
-#include <random>
-#include <bitset>
+#include <boost/random.hpp>
+#include <boost/dynamic_bitset.hpp>
 
 using namespace std;
+using namespace boost;
 
 // --------------------------------
 //  メイン関数
@@ -26,30 +27,31 @@ void Main(){
     // ランダムデバイスを取得
     random_device rd;
     // メルセンヌツイスター
-    mt19937 mt(rd());
+    random::mt19937 mt(rd());
     // サイコロを定義
-    uniform_int_distribution<int> dice(1, 6);
+    random::uniform_int_distribution<> dice(1, 6);
 
     // ---------------- 変数 ----------------
     // サイコロのフォント
     Font f_dice(16);
     // サイコロを投げるフラグ
-    bitset<1> flag_dice;
+    dynamic_bitset<> flag_dice(1);
     // サイコロの結果
     int dice_result;
 
+    // ---------------- メインループ ----------------
     while (System::Update()){
 
         // Zキーが押されたならば
         if (Input::KeyZ.clicked){
             // サイコロを投げるフラグをオン
-            flag_dice.at(0) = true;
+            flag_dice.set(0);
             // サイコロの値を取得
             dice_result = dice(mt);
         }
 
         // サイコロを投げるフラグがオンなら
-        if (flag_dice.at(0)){
+        if (flag_dice.test(0)){
             // サイコロを描画
             f_dice(dice_result).draw();
         }
