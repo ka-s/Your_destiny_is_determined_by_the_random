@@ -26,10 +26,15 @@ public:
     // 更新メソッド
     void update();
     // 描画メソッド
-    void draw();
+    int draw();
 
     // サイコロを投げるメソッド
-    void throw_dice();
+    int throw_dice();
     // プレイヤー情報を更新するメソッド
     void update_player_data();
+
+    // ゴールまであとどれくらいか計算するメソッド
+    int get_last_goal(int now_prg);
+    // ゴール判定メソッド
+    bool is_clear();
 };
