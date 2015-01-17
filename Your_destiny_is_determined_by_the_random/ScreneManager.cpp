@@ -20,6 +20,9 @@ namespace{
     random::uniform_int_distribution<> dice(1, 6);
 }
 
+// --------------------------------
+//  コンストラクタ
+// --------------------------------
 ScreneManager::ScreneManager(){
     // 生成
     for (int i = 0; i < PLAYER_NUM; ++i){
@@ -37,10 +40,16 @@ ScreneManager::ScreneManager(){
     now_turn = 0;
 }
 
+// --------------------------------
+//  デストラクタ
+// --------------------------------
 ScreneManager::~ScreneManager(){
 
 }
 
+// --------------------------------
+//  更新
+// --------------------------------
 void ScreneManager::update(){
 
     throw_dice();
@@ -48,6 +57,9 @@ void ScreneManager::update(){
 
 }
 
+// --------------------------------
+//  描画
+// --------------------------------
 int ScreneManager::draw(){
 
     // クリア時描画
@@ -76,7 +88,9 @@ int ScreneManager::draw(){
     return 0;
 }
 
-
+// --------------------------------
+//  サイコロを投げる
+// --------------------------------
 int ScreneManager::throw_dice(){
     static int dice_count = 0;
 
@@ -92,15 +106,11 @@ int ScreneManager::throw_dice(){
         switch (who_turn){
         case 0:
             // TODO : メソッド化
-            flag_dice.set(dice_count % PLAYER_NUM);
-            dice_result.at(who_turn) = dice(mt);
-            now_position.at(who_turn) += dice_result.at(who_turn);
+            move_on_one_player_dice(who_turn);
             now_turn += 1;
             break;
         case 1:
-            flag_dice.set(dice_count % PLAYER_NUM);
-            dice_result.at(who_turn) = dice(mt);
-            now_position.at(who_turn) += dice_result.at(who_turn);
+            move_on_one_player_dice(who_turn);
             break;
         }
 
@@ -110,6 +120,9 @@ int ScreneManager::throw_dice(){
     return 0;
 }
 
+// --------------------------------
+//  プレイヤー情報更新
+// --------------------------------
 void ScreneManager::update_player_data(){
 
     for (int i = 0; i < PLAYER_NUM; ++i){
@@ -118,10 +131,26 @@ void ScreneManager::update_player_data(){
 
 }
 
+// --------------------------------
+//  プレイヤーごとの処理
+// --------------------------------
+void ScreneManager::move_on_one_player_dice(int now_turn){
+    flag_dice.set(now_turn);
+    dice_result.at(now_turn) = dice(mt);
+    now_position.at(now_turn) += dice_result.at(now_turn);
+}
+
+
+// --------------------------------
+//  ゴールまであとどれくらいか計算
+// --------------------------------
 int ScreneManager::get_last_goal(int now_prg){
     return GOAL_POSITION - now_prg;
 }
 
+// --------------------------------
+//  ゴール判定
+// --------------------------------
 bool ScreneManager::is_clear(){
 
     for (int i = 0; i < PLAYER_NUM; ++i){
