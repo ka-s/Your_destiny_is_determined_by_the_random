@@ -88,7 +88,7 @@ void Main(){
     Window::Centering();
 
     // ---------------- 変数 ----------------
-    // 画面管理ポインタ
+    // 画面管理クラスのポインタ
     boost::shared_ptr<ScreneManager> screne_manager(new ScreneManager());
 
     // ---------------- メインループ ----------------
