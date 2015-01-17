@@ -4,6 +4,8 @@
 #include <boost/random.hpp>
 #include <boost/dynamic_bitset.hpp>
 #include <boost/shared_ptr.hpp>
+#include <boost/array.hpp>
+#include <boost/foreach.hpp>
 #include "Player.h"
 
 // ================================
@@ -12,7 +14,7 @@
 class ScreneManager{
 private:
     // プレイヤー
-    boost::shared_ptr<Player> player;
+    boost::array<boost::shared_ptr<Player>, 2> player;
 
     // サイコロのフォント
     Font f_dice;
