@@ -14,6 +14,8 @@ namespace{
 }
 
 ScreneManager::ScreneManager(){
+    player = boost::shared_ptr<Player>(new Player());
+
     f_dice = Font(16);
 }
 
@@ -23,6 +25,27 @@ ScreneManager::~ScreneManager(){
 
 void ScreneManager::update(){
 
+    throw_dice();
+
+    update_player_data();
+
+}
+
+void ScreneManager::draw(){
+
+    if (flag_dice.test(0)){
+        f_dice(dice_result).draw();
+        f_dice(player->get_progress()).draw({ 0, 18 });
+    }
+    else{
+        f_dice(L"Please press Z key").draw();
+    }
+
+}
+
+
+void ScreneManager::throw_dice(){
+
     if (Input::KeyZ.clicked){
         flag_dice.set(0);
         dice_result = dice(mt);
@@ -31,14 +54,8 @@ void ScreneManager::update(){
 
 }
 
-void ScreneManager::draw(){
+void ScreneManager::update_player_data(){
 
-    if (flag_dice.test(0)){
-        f_dice(dice_result).draw();
-        f_dice(now_position).draw({ 0, 18 });
-    }
-    else{
-        f_dice(L"Please press Z key").draw();
-    }
+    player->set_progress(now_position);
 
 }

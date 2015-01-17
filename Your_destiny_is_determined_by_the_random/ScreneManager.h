@@ -3,12 +3,17 @@
 #include <Siv3D.hpp>
 #include <boost/random.hpp>
 #include <boost/dynamic_bitset.hpp>
+#include <boost/shared_ptr.hpp>
+#include "Player.h"
 
 // ================================
 //  画面管理クラス
 // ================================
 class ScreneManager{
 private:
+    // プレイヤー
+    boost::shared_ptr<Player> player;
+
     // サイコロのフォント
     Font f_dice;
 
@@ -22,4 +27,9 @@ public:
     void update();
     // 描画メソッド
     void draw();
+
+    // サイコロを投げるメソッド
+    void throw_dice();
+    // プレイヤー情報を更新するメソッド
+    void update_player_data();
 };

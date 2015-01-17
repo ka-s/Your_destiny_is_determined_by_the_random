@@ -19,4 +19,11 @@ public:
     // デストラクタ
     ~Player();
 
+    // 取得メソッド
+    Pos get_pos();
+    int get_progress();
+
+    // 設定メソッド
+    void set_pos(Pos new_pos);
+    void set_progress(int new_progress);
 };
