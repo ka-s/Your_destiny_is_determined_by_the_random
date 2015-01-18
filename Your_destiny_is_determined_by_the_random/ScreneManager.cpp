@@ -5,7 +5,7 @@ using namespace boost;
 
 namespace{
     // 定数
-    const int GOAL_POSITION = 64;
+    const int GOAL_POSITION = 32;
 
     // 変数
     // TODO : プレイヤー人数にする
