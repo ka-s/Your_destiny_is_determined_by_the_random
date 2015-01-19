@@ -18,7 +18,7 @@ void Main(){
     // ウィンドウタイトル
     Window::SetTitle(L"Game make test");
     // ウィンドウサイズ
-    Window::Resize(1024, 768);
+    Window::Resize(1024, 576);
     // ウィンドウを中心にセット
     Window::Centering();
 

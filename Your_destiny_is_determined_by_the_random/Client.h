@@ -26,7 +26,9 @@ private:
     void on_send(const boost::system::error_code& error, size_t bytes_transferred);
 
 public:
-    Client(asio::io_service& io_service) : io_service_(io_service), socket_(io_service);
+    Client(asio::io_service& io_service)
+        : io_service_(io_service),
+        socket_(io_service){}
 
     void start();
 

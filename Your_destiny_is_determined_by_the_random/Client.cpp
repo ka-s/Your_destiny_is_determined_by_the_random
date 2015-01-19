@@ -1,9 +1,5 @@
 #include "Client.h"
 
-Client::Client(asio::io_service& io_service) : io_service_(io_service), socket_(io_service){
-
-}
-
 void Client::start(){
 
     connect();

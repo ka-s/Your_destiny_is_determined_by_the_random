@@ -12,12 +12,12 @@ class Server {
     asio::streambuf receive_buff_;
 
 public:
-    Server(asio::io_service& io_service) : io_service_(io_service), acceptor_(io_service, tcp::endpoint(tcp::v4(), 31400)), socket_(io_service);
+    Server(asio::io_service& io_service)
+        : io_service_(io_service),
+        acceptor_(io_service, tcp::endpoint(tcp::v4(), 31400)),
+        socket_(io_service){}
 
-    void start()
-    {
-        start_accept();
-    }
+    void start();
 
 private:
     // ê⁄ë±ë“ã@

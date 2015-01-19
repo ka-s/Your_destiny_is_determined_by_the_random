@@ -1,10 +1,5 @@
 #include "Server.h"
 
-Server::Server(asio::io_service& io_service) : io_service_(io_service), acceptor_(io_service, tcp::endpoint(tcp::v4(), 31400)), socket_(io_service){
-
-}
-
-
 void Server::start(){
 
     start_accept();
